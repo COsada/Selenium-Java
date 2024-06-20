@@ -1,0 +1,68 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 2773505300,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I open the browser",
+            "match": {
+              "location": "background.openBrowser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1163608800,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I navigate to the websites homepage",
+            "match": {
+              "location": "background.goToFacebook()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "line": 7,
+        "name": "Login functionality exists",
+        "description": "",
+        "id": "stepdefinitions.cucumberjava;login-functionality-exists",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 126767800,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Login button should exits",
+            "match": {
+              "location": "cucumberJava.loginButton()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "stepDefinitions.CucumberJava",
+    "description": "",
+    "id": "stepdefinitions.cucumberjava",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/facebook.feature",
+    "tags": []
+  }
+]

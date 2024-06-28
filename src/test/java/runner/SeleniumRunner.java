@@ -7,10 +7,10 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/test/resources/features/facebook.feature",
+		features = "src/test/resources/features/selenium.feature",
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:target/cucumber-Report", "json:target/report.json"})
 
-public class FacebookRunner {
+public class SeleniumRunner {
 
 }

@@ -1,4 +1,4 @@
-package stepDefinitions.SeleniumSteps;
+package seleniumPages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By; 
@@ -14,19 +14,27 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import drivers.WebdriverSingelton; 
 
-public class AboutSelenium { 
-	
+public class About { 
+
    @Then("The 'About Selenium' page should load") 
-   public void logosLoaded() { 
-      if(seleniumHistory.isDisplayed() && 
-    		  seleniumEcosystem.isDisplayed() &&
-    		  seleniumSupport.isDisplayed() &&
-    		  seleniumInvolved.isDisplayed()) { 
-         System.out.println("Test 'Can navigate to the 'About Selenium' page' Passed"); 
-      } else {
-         Assert.fail();
-      } 
-      driver.quit(); 
+   public void aboutPage() {
+	   if (driver.getCurrentUrl().equals("https://www.selenium.dev/about/")) {
+	   } else {
+		   Assert.fail();
+	   }
+   }
+   
+   @Then("The different 'About Selenium' titles should be displayed") 
+   public void aboutTitlesLoaded() {
+	      if(seleniumHistory.isDisplayed() && 
+	    		  seleniumEcosystem.isDisplayed() &&
+	    		  seleniumSupport.isDisplayed() &&
+	    		  seleniumInvolved.isDisplayed()) { 
+	         System.out.println("Test 'Can navigate to the 'About Selenium' page and titles display' page' Passed."); 
+	      } else {
+	         Assert.fail();
+	      } 
+	      driver.quit(); 
    }
    
    //WebDriver retrieval

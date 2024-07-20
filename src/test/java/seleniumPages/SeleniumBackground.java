@@ -1,4 +1,4 @@
-package stepDefinitions;
+package seleniumPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -9,7 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import drivers.WebdriverSingelton;
 
-public class Background {
+public class SeleniumBackground {
 	   WebDriver driver = null; 
 
 

@@ -1,4 +1,4 @@
-package stepDefinitions.SeleniumSteps;
+package seleniumPages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By; 
@@ -22,7 +22,7 @@ public class Homepage {
     		  seleniumWebdriverLogo.isDisplayed() &&
     		  seleniumIDELogo.isDisplayed() &&
     		  seleniumGridLogo.isDisplayed()) { 
-         System.out.println("Test 'Selenium homepage should load' Passed"); 
+         System.out.println("Test 'Selenium homepage should load' Passed."); 
       } else {
          Assert.fail();
       } 
@@ -47,6 +47,15 @@ public class Homepage {
 	      }
    }
    
+   @Given("I click the 'Downloads' option from the navbar") 
+   public void downloadsNavbar() { 
+      if(downloadsNavbar.isEnabled()) {
+    	  downloadsNavbar.click();
+      } else {
+         Assert.fail();
+      }
+   }
+   
    //WebDriver retrieval
    WebDriver driver = WebdriverSingelton.getWebDriver(); 
    
@@ -55,6 +64,7 @@ public class Homepage {
    WebElement seleniumWebdriverLogo = driver.findElement(By.xpath("//*[@id=\"selenium_webdriver\"]"));
    WebElement seleniumIDELogo = driver.findElement(By.xpath("//*[@id=\"selenium_ide\"]"));
    WebElement seleniumGridLogo = driver.findElement(By.xpath("//*[@id=\"selenium_grid\"]"));
+   WebElement downloadsNavbar = driver.findElement(By.xpath("//nav/div/ul/li[2]"));
    
    WebElement aboutDropdown = driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]"));
    WebElement aboutSelenium = driver.findElement(By.xpath("//ul/li[1]/div/a[1]"));

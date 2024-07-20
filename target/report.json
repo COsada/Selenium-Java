@@ -11,25 +11,25 @@
         "steps": [
           {
             "result": {
-              "duration": 2773505300,
+              "duration": 2741453000,
               "status": "passed"
             },
             "line": 4,
             "name": "I open the browser",
             "match": {
-              "location": "background.openBrowser()"
+              "location": "Background.openBrowser()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 1163608800,
+              "duration": 522555300,
               "status": "passed"
             },
             "line": 5,
-            "name": "I navigate to the websites homepage",
+            "name": "I navigate to the Selenium homepage",
             "match": {
-              "location": "background.goToFacebook()"
+              "location": "Background.goToSelenium()"
             },
             "keyword": "And "
           }
@@ -37,21 +37,101 @@
       },
       {
         "line": 7,
-        "name": "Login functionality exists",
+        "name": "The different Selenium logos should be visible",
         "description": "",
-        "id": "stepdefinitions.cucumberjava;login-functionality-exists",
+        "id": "stepdefinitions.cucumberjava;the-different-selenium-logos-should-be-visible",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 126767800,
+              "duration": 6390682300,
               "status": "passed"
             },
             "line": 8,
-            "name": "Login button should exits",
+            "name": "The different Selenium logos should be visible",
             "match": {
-              "location": "cucumberJava.loginButton()"
+              "location": "Homepage.logosLoaded()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 94200,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I open the browser",
+            "match": {
+              "location": "Background.openBrowser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchSessionException: invalid session id\nBuild info: version: \u00274.21.0\u0027, revision: \u002779ed462ef4\u0027\nSystem info: os.name: \u0027Windows 11\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002722.0.1\u0027\nDriver info: org.openqa.selenium.edge.EdgeDriver\nCommand: [b374753f115a4a126de0404e7fbea537, get {url\u003dhttps://www.selenium.dev/}]\nCapabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 126.0.2592.68, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:63324}, msedge: {msedgedriverVersion: 126.0.2592.68 (30e1b6cc72a8..., userDataDir: C:\\Users\\cosad\\AppData\\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63324/devtoo..., se:cdpVersion: 126.0.2592.68, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: b374753f115a4a126de0404e7fbea537\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)\r\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver$RemoteNavigation.to(RemoteWebDriver.java:1063)\r\n\tat stepDefinitions.Background.goToSelenium(Background.java:26)\r\n\tat ✽.I navigate to the Selenium homepage(src/test/resources/features/selenium.feature:5)\r\n",
+              "duration": 48404000,
+              "status": "failed"
+            },
+            "line": 5,
+            "name": "I navigate to the Selenium homepage",
+            "match": {
+              "location": "Background.goToSelenium()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "line": 10,
+        "name": "Can navigate to the \u0027About Selenium\u0027 page",
+        "description": "",
+        "id": "stepdefinitions.cucumberjava;can-navigate-to-the--about-selenium--page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 4100,
+              "status": "skipped"
+            },
+            "line": 11,
+            "name": "I can open the \u0027About\u0027 dropdown menu",
+            "match": {
+              "location": "Homepage.aboutDropdown()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2400,
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "I can choose the \u0027About Selenium\u0027 option",
+            "match": {
+              "location": "Homepage.aboutSelenium()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1900,
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "The \u0027About Selenium\u0027 page should load",
+            "match": {
+              "location": "AboutSelenium.logosLoaded()"
             },
             "keyword": "Then "
           }
@@ -62,7 +142,7 @@
     "description": "",
     "id": "stepdefinitions.cucumberjava",
     "keyword": "Feature",
-    "uri": "src/test/resources/features/facebook.feature",
+    "uri": "src/test/resources/features/selenium.feature",
     "tags": []
   }
 ]

@@ -17,3 +17,27 @@ Scenario: Can navigate to the 'Download' page and the titles have the right text
 Given I click the 'Downloads' option from the navbar
 Then The 'Downloads' page should load
 And The different 'Downloads' titles should have the right text
+
+Scenario: Can navigate to the 'Documentation' page and access the different subsections
+Given I click the 'Documentation' option from the navbar
+Then The 'Documentation' page should load
+And The different subsection should be accessible
+	| Selenium Overview |
+	| WebDriver         | 
+	| Selenium Manager  |
+	| Grid              |
+	| IE Driver Server  |
+	| Selenium IDE      |
+	| Test Practices    |
+	| Legacy            |
+	| About             |
+	
+Scenario: Can navigate to the 'Documentation' page and change the selected language
+Given I click the 'Documentation' option from the navbar
+Then The 'Documentation' page should load
+And The language used for the documentation can be changed to "<Language>"
+Example:
+  | Language               |
+	| Português (Brasileiro) |
+	| 中文简体                |
+	| 日本語                  |

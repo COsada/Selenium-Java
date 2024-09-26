@@ -4,16 +4,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By; 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import drivers.WebdriverSingelton;
-import io.cucumber.datatable.DataTable; 
 
 public class Documentation { 
 	
@@ -25,112 +21,93 @@ public class Documentation {
 	   }
    }
    
-   @Then("The different subsection should be accessible") 
-   public void documentationSubsectionsLoaded(DataTable table) {
-	   for (int i = 0; i < table.height(); i++) {
-		   
+   /*This method is overall a bit sloppy for my tastes due to the stale element exception. Would be a lot cleaner 
+    * if I took sometime to figure out a better solution for that, but it works for now and I can always come back.*/
+   @Then("The \"(.*)\" section should be accessible through the index") 
+   public void documentationSubsectionsLoaded(String sectionName) {
+	   
+	   /*The 'click' and ''refresh' actions are outside the method block as they cause stale element 
+	   issues due to being passed the elements rather then holding the actual ones*/
+	   switch(sectionName) {
+	   case "Overview":
+		   overviewTab.click();
 		   refreshElements();
-		   String tableString = table.row(i).toString();
-		   //Text from table has brackets around it without this
-		   String subsection = tableString.substring(1, tableString.length()-1);
-		   
-		   switch (subsection) {
-		   case "Selenium Overview":
-			   overviewTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "WebDriver":
-			   webdriverTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "Selenium Manager":
-			   seleniumManagerTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "Grid":
-			   gridTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "IE Driver Server":
-			   ieDriverServerTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "Selenium IDE":
-			   ideTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "Test Practices":
-			   testPracticiesTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "Legacy":
-			   legacyTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   case "About":
-			   aboutTab.click();
-			   refreshElements();
-			   if(subsectionHeader.getText().startsWith(subsection)) {
-			   } else {
-				   driver.quit();
-				   Assert.fail();
-			   }
-		     break;
-		   default:
-		     System.out.println("No matching case for tab name given.");
-		 }
-	   }
-	   System.out.println("Test 'Can navigate to the 'Documentation' page and access the different subsections' Passed.");
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "WebDriver":
+		   webdriverTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "Selenium Manager":
+		   seleniumManagerTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "Grid":
+		   gridTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "IE Driver Server":
+		   ieDriverServerTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "Selenium IDE":
+		   ideTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "Test Practices":
+		   testPracticiesTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "Legacy":
+		   legacyTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   case "About":
+		   aboutTab.click();
+		   refreshElements();
+		   checkHeaderThenQuit(sectionHeader,  sectionName);
+	     break;
+	   default:
+		   System.out.println("Given section was not recognized.");
+		   Assert.fail();
+		   driver.quit();
+	 }
+   }
+   
+   @And("The language used for the documentation can be changed to \"(.*)\"") 
+   public void documentationLanguageChange(String language) {
+	   languageMenu.click();
+	   languageSelect = driver.findElement(By.linkText(language));
+	   languageSelect.click();
+   }
+   
+   @And("Displays the new header \"(.*)\"") 
+   public void documentationLanguageChangeHeaderCheck(String newHeader) {
+	   refreshElements();
+	   System.out.println(sectionHeader.getText());
+	   System.out.println(newHeader);
+	   
+	   if (sectionHeader.getText().contains(newHeader)) {
+		   System.out.println("Test 'Can navigate to the 'Documentation' page and change the selected language to " + newHeader + "' Passed.");
+	   } else { Assert.fail(); }
 	   driver.quit();
    }
    
-   @Then("The language used for the documentation can be changed to \"([^\\\"]*)\\\"") 
-   public void documentationLanguageChange(String language) {
-	   
-   }
    
+   
+//This section holds methods used by the tests above.
+   
+   /*Refreshes elements on the page to avoid stale element error, admittedly I am being a bit lazy stuffing them together like this.
+    * However, that is a future me problem, not present me.*/
    public void refreshElements() {
-	   subsectionHeader = driver.findElement(By.xpath("//div/h1"));
+	   sectionHeader = driver.findElement(By.xpath("//div/h1"));
 	   
 	   overviewTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[1]"));
 	   webdriverTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[2]"));
@@ -143,11 +120,21 @@ public class Documentation {
 	   aboutTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[9]"));
    }
    
+   //Navigates to a given section of the Documentation using the index then compares the Header against a given string
+   public void checkHeaderThenQuit(WebElement compareThis, String toThis) {
+	   if (compareThis.getText().contains(toThis)) {
+		   System.out.println("Test 'Access "+ toThis + " section of Documentation page' Passed.");
+	   } else { Assert.fail(); }
+	   
+	   //This is included so it has a fresh window every time for each test
+	   driver.quit();
+   }
+   
    //WebDriver retrieval
    WebDriver driver = WebdriverSingelton.getWebDriver(); 
    
    //PageElements
-   WebElement subsectionHeader = driver.findElement(By.xpath("//div/h1"));
+   WebElement sectionHeader = driver.findElement(By.xpath("//div/h1"));
    
    WebElement overviewTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[1]"));
    WebElement webdriverTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[2]"));
@@ -158,4 +145,7 @@ public class Documentation {
    WebElement testPracticiesTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[7]"));
    WebElement legacyTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[8]"));
    WebElement aboutTab = driver.findElement(By.xpath("//aside[1]/div/nav/ul/li/ul/li[9]"));
+   
+   WebElement languageMenu = driver.findElement(By.xpath("//li[7]/div[contains(@class,'dropdown')]"));
+   WebElement languageSelect;
 }

@@ -56,6 +56,15 @@ public class Homepage {
       }
    }
    
+   @Given("I click the 'Documentation' option from the navbar") 
+   public void documentationNavbar() { 
+      if(documentationNavbar.isEnabled()) {
+    	  documentationNavbar.click();
+      } else {
+         Assert.fail();
+      }
+   }
+   
    //WebDriver retrieval
    WebDriver driver = WebdriverSingelton.getWebDriver(); 
    
@@ -64,7 +73,9 @@ public class Homepage {
    WebElement seleniumWebdriverLogo = driver.findElement(By.xpath("//*[@id=\"selenium_webdriver\"]"));
    WebElement seleniumIDELogo = driver.findElement(By.xpath("//*[@id=\"selenium_ide\"]"));
    WebElement seleniumGridLogo = driver.findElement(By.xpath("//*[@id=\"selenium_grid\"]"));
+   
    WebElement downloadsNavbar = driver.findElement(By.xpath("//nav/div/ul/li[2]"));
+   WebElement documentationNavbar = driver.findElement(By.xpath("//nav/div/ul/li[3]"));
    
    WebElement aboutDropdown = driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]"));
    WebElement aboutSelenium = driver.findElement(By.xpath("//ul/li[1]/div/a[1]"));

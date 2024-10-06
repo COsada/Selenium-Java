@@ -12,7 +12,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import drivers.WebdriverSingelton; 
+import factory.Webdriver; 
 
 public class Downloads { 
 	
@@ -46,7 +46,7 @@ public class Downloads {
    }
    
    //WebDriver retrieval
-   WebDriver driver = WebdriverSingelton.getWebDriver(); 
+   WebDriver driver = Webdriver.getWebDriver(); 
    
    //PageElements
    WebElement languageBindingsTitle = driver.findElement(By.xpath("//main/div[2]/div/div[1]/h2"));//good

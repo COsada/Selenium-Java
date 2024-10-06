@@ -4,12 +4,10 @@ import org.junit.Assert;
 import org.openqa.selenium.By; 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import drivers.WebdriverSingelton;
+import factory.Webdriver;
 
 public class Documentation { 
 	
@@ -131,7 +129,7 @@ public class Documentation {
    }
    
    //WebDriver retrieval
-   WebDriver driver = WebdriverSingelton.getWebDriver(); 
+   WebDriver driver = Webdriver.getWebDriver(); 
    
    //PageElements
    WebElement sectionHeader = driver.findElement(By.xpath("//div/h1"));

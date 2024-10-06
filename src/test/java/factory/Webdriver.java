@@ -1,11 +1,11 @@
-package drivers;
+package factory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class WebdriverSingelton {
+public class Webdriver {
 	  public static WebDriver driver;
 	  
-	  public WebdriverSingelton(){
+	  public Webdriver(){
 	    driver = new EdgeDriver();
 	  }
 	  

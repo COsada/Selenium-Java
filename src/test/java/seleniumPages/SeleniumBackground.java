@@ -7,7 +7,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import drivers.WebdriverSingelton;
+import factory.Webdriver;
 
 public class SeleniumBackground {
 	   WebDriver driver = null; 
@@ -15,7 +15,7 @@ public class SeleniumBackground {
 
 	   @Given("I open the browser") 
 	   public void openBrowser() { 
-	      driver = WebdriverSingelton.getWebDriver(); 
+	      driver = Webdriver.getWebDriver(); 
 	   } 
 		
 	   @When("I navigate to the websites homepage") 
